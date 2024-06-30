@@ -35,6 +35,9 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
+-- nvim-tree
+vim.keymap.set('n', '<leader>nt', "<cmd>NvimTreeOpen<CR>", {})
+
 -- indent-blankline
 local highlight = {
 	"RainbowRed",
@@ -95,7 +98,7 @@ lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 	vim.keymap.set('n', '<leader><C-k>', vim.lsp.buf.signature_help, bufopts)
 	vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
---	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+	--	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set('n', '<leader>gq', vim.lsp.buf.format, bufopts)
 	vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, bufopts)
 	--vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
@@ -118,12 +121,11 @@ lsp_zero.on_attach(function(client, bufnr)
 	vim.keymap.set('n', ']G', "cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
 	vim.keymap.set('n', '<leader>F', "<cmd>Lspsaga finder<CR>", bufopts)
 	vim.keymap.set('n', '<leader>rn', "<cmd>Lspsaga rename<CR>", bufopts)
-
 end)
 
 lsp_zero.set_server_config({
 	on_init = function(client)
---		client.server_capabilities.semanticTokensProvider = nil
+		--		client.server_capabilities.semanticTokensProvider = nil
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.documentFormattingRangeProvider = false
 	end,
@@ -208,3 +210,4 @@ null_ls.setup({
 })
 
 --require('lspsaga').setup({})
+
