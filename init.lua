@@ -1,5 +1,5 @@
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = " "
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 require("config.lazy")
 
@@ -9,6 +9,8 @@ vim.opt.visualbell = true
 vim.opt.cursorline = true
 vim.opt.backup = false
 vim.opt.swapfile = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
 vim.opt.grepprg = "egrep"
 vim.opt.equalalways = true
 
@@ -27,6 +29,8 @@ vim.api.nvim_set_keymap("c", "<C-B>", "<Left>", {})
 vim.api.nvim_set_keymap("c", "<C-A>", "<Home>", {})
 vim.api.nvim_set_keymap("c", "<C-E>", "<End>", {})
 vim.api.nvim_set_keymap("c", "<C-D>", "<Delete>", {})
+
+vim.api.nvim_set_keymap("n", "<leader>so", "<cmd>source $MYVIMRC<CR>", {})
 
 --vim.cmd("colorscheme kanagawa-lotus")
 vim.cmd("colorscheme kanagawa")
