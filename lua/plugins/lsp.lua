@@ -8,9 +8,22 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+	},
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = {
+			"nvimtools/none-ls-extras.nvim",
+		},
+	},
+	{
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v3.x",
 		config = function()
 			local lsp_zero = require("lsp-zero")
+			lsp_zero.setup()
 			lsp_zero.extend_lspconfig()
+
+			-- mason-lspconfig
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"bashls",
@@ -25,26 +38,13 @@ return {
 					"tsserver",
 					"vimls",
 				},
+				automatic_installation = true,
 				handlers = {
 					lsp_zero.default_setup,
 				},
 			})
-		end,
-	},
-	{
-		"nvimtools/none-ls.nvim",
-		dependencies = {
-			"nvimtools/none-ls-extras.nvim",
-		},
-	},
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v3.x",
-		config = function()
-			print("lsp-zero config")
-			local lsp_zero = require("lsp-zero")
-			lsp_zero.setup()
 
+			-- none-ls
 			local status, null_ls = pcall(require, "null-ls")
 			if not status then
 				print("none-ls not found")
@@ -60,10 +60,12 @@ return {
 				sources = {
 					require("none-ls.diagnostics.eslint"),
 					null_ls.builtins.formatting.prettier,
+					require("none-ls.formatting.ruff"),
 					null_ls.builtins.formatting.stylua,
 				},
 			})
 
+			-- mason-null-ls
 			require("mason-null-ls").setup({
 				--ensure_installed = nil,
 				ensure_installed = {
@@ -72,6 +74,7 @@ return {
 					"jsonlint",
 					"lua-formatter",
 					"prettier",
+					"ruff",
 					"stylua",
 				},
 				automatic_installation = true, -- You can still set this to `true`
