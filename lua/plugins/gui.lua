@@ -6,7 +6,8 @@ return {
 		opts = {
 			options = {
 				icons_enabled = true,
-				theme = "auto",
+				--theme = "auto",
+				theme = "gruvbox-material",
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
@@ -49,5 +50,18 @@ return {
 			extensions = {},
 		},
 	},
+	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+	    {
+      'sainnhe/gruvbox-material',
+      lazy = false,
+      priority = 1000,
+      config = function()
+        -- Optionally configure and load the colorscheme
+        -- directly inside the plugin declaration.
+        vim.g.gruvbox_material_enable_italic = true
+        vim.g.gruvbox_material_cursor = 'red'
+       -- vim.cmd.colorscheme('gruvbox-material')
+      end
+    }
 	--	{'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'}
 }

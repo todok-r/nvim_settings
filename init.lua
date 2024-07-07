@@ -1,15 +1,15 @@
-vim.g.mapleader = '\\'
-vim.g.maplocalleader = ' '
+vim.g.mapleader = "\\"
+vim.g.maplocalleader = " "
 
 require("config.lazy")
 
-vim.opt.mouse = ''
-vim.opt.foldmethod = 'marker'
+vim.opt.mouse = ""
+vim.opt.foldmethod = "marker"
 vim.opt.visualbell = true
 vim.opt.cursorline = true
 vim.opt.backup = false
 vim.opt.swapfile = false
-vim.opt.grepprg = 'egrep'
+vim.opt.grepprg = "egrep"
 vim.opt.equalalways = true
 
 vim.opt.tabstop = 4
@@ -22,11 +22,21 @@ vim.opt.ignorecase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
-vim.api.nvim_set_keymap('', '<F1>', '<ESC>', {})
-vim.api.nvim_set_keymap('c', '<C-B>', '<Left>', {})
-vim.api.nvim_set_keymap('c', '<C-A>', '<Home>', {})
-vim.api.nvim_set_keymap('c', '<C-E>', '<End>', {})
-vim.api.nvim_set_keymap('c', '<C-D>', '<Delete>', {})
+vim.api.nvim_set_keymap("", "<F1>", "<ESC>", {})
+vim.api.nvim_set_keymap("c", "<C-B>", "<Left>", {})
+vim.api.nvim_set_keymap("c", "<C-A>", "<Home>", {})
+vim.api.nvim_set_keymap("c", "<C-E>", "<End>", {})
+vim.api.nvim_set_keymap("c", "<C-D>", "<Delete>", {})
 
+--vim.cmd("colorscheme kanagawa-lotus")
 vim.cmd("colorscheme kanagawa")
-vim.opt.termguicolors = true
+--vim.cmd("colorscheme gruvbox")
+--[[
+vim.g.gruvbox_material_background = "hard"
+vim.g.gruvbox_material_better_performance = 1
+vim.o.background = "light"
+if vim.fn.has("termguicolors") then
+	vim.opt.termguicolors = true
+end
+vim.cmd("colorscheme gruvbox-material")
+]]

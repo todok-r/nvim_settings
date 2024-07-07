@@ -55,6 +55,7 @@ return {
 				handlers = {
 				},
 			})
+			--[[
 			local status, null_ls = pcall(require, "none-ls")
 			if not status then
 				return
@@ -67,6 +68,7 @@ return {
 					null_ls.builtins.formatting.stylua,
 				},
 			})
+			]]
 		end,
 	},
 	{
