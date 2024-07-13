@@ -31,6 +31,7 @@ vim.api.nvim_set_keymap("c", "<C-E>", "<End>", {})
 vim.api.nvim_set_keymap("c", "<C-D>", "<Delete>", {})
 
 vim.api.nvim_set_keymap("n", "<leader>so", "<cmd>source $MYVIMRC<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>tabe $MYVIMRC<CR>", {})
 
 --vim.cmd("colorscheme kanagawa-lotus")
 vim.cmd("colorscheme kanagawa")
