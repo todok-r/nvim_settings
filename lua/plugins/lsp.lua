@@ -23,6 +23,14 @@ return {
 			lsp_zero.setup()
 			lsp_zero.extend_lspconfig()
 
+			lsp_zero.set_server_config({
+				on_init = function(client)
+					client.server_capabilities.semanticTokensProvider = nil
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentFormattingRangeProvider = false
+				end,
+			})
+
 			-- mason-lspconfig
 			require("mason-lspconfig").setup({
 				ensure_installed = {
@@ -125,14 +133,6 @@ return {
 				vim.keymap.set("n", "<leader>F", "<cmd>Lspsaga finder<CR>", bufopts)
 				vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
 			end)
-
-			lsp_zero.set_server_config({
-				on_init = function(client)
-					--		client.server_capabilities.semanticTokensProvider = nil
-					client.server_capabilities.documentFormattingProvider = false
-					client.server_capabilities.documentFormattingRangeProvider = false
-				end,
-			})
 		end,
 	},
 	{
