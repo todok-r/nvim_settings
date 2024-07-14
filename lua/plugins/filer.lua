@@ -15,8 +15,21 @@ return {
 					enable = true,
 					update_root = {
 						enable = true,
-						global = true,
 					},
+				},
+				diagnostics = {
+					enable = true,
+					show_on_dirs = true,
+					show_on_open_dirs = true,
+				},
+				modified = {
+					enable = true,
+					show_on_dirs = true,
+					show_on_open_dirs = true,
+				},
+				filters = {
+					git_ignored = false,
+					dotfiles = false,
 				},
 			})
 			vim.keymap.set("n", "<leader>nt", "<cmd>NvimTreeToggle<CR>", {})

@@ -29,7 +29,7 @@ return {
 					"bashls",
 					"clangd",
 					"cssls",
-					"eslint",
+					--"eslint",
 					"html",
 					"jsonls",
 					"lua_ls",
@@ -54,11 +54,13 @@ return {
 
 			null_ls.setup({
 				on_attach = function(client, bufnr)
-					print("null-ls attach", client.id, bufnr)
+					--print("null-ls attach", client.id, bufnr)
 					null_ls_opts.on_attach(client, bufnr)
 				end,
 				sources = {
+					--require("none-ls.diagnostics.eslint_d"),
 					require("none-ls.diagnostics.eslint"),
+					--null_ls.builtins.formatting.prettierd,
 					null_ls.builtins.formatting.prettier,
 					require("none-ls.formatting.ruff"),
 					null_ls.builtins.formatting.stylua,
@@ -70,9 +72,10 @@ return {
 				--ensure_installed = nil,
 				ensure_installed = {
 					"clang-format",
-					"eslint",
+					--"eslint_d",
 					"jsonlint",
-					"lua-formatter",
+					--"lua-formatter",
+					--"prettierd",
 					"prettier",
 					"ruff",
 					"stylua",
@@ -82,7 +85,7 @@ return {
 			})
 
 			lsp_zero.on_attach(function(client, bufnr)
-				print("lsp-zero attach", client.id, bufnr)
+				--print("lsp-zero attach", client.id, bufnr)
 				-- see :help lsp-zero-keybindings
 				-- to learn the available actions
 				--[[
@@ -110,16 +113,15 @@ return {
 				vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, bufopts)
 				vim.keymap.set("n", "<leader>gI", "<cmd>Lspsaga peek_definition<CR>", bufopts)
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-				vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, bufopts)
-				vim.keymap.set("n", "]g", vim.diagnostic.goto_next, bufopts)
+				--vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, bufopts)
+				--vim.keymap.set("n", "]g", vim.diagnostic.goto_next, bufopts)
 
 				vim.keymap.set("v", "<leader>gq", vim.lsp.buf.format, bufopts)
 
 				--vim.keymap.set("n", "K", "<cmd>Lspsaga hover<CR>", bufopts)
 				vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", bufopts)
-				vim.keymap.set("n", "[G", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
-				vim.keymap.set("n", "]G", "cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
-				vim.keymap.set("n", "]G", "cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
+				vim.keymap.set("n", "[g", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
+				vim.keymap.set("n", "]g", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
 				vim.keymap.set("n", "<leader>F", "<cmd>Lspsaga finder<CR>", bufopts)
 				vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
 			end)
