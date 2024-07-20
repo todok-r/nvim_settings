@@ -25,9 +25,15 @@ return {
 
 			lsp_zero.set_server_config({
 				on_init = function(client)
-					client.server_capabilities.semanticTokensProvider = nil
-					client.server_capabilities.documentFormattingProvider = false
-					client.server_capabilities.documentFormattingRangeProvider = false
+					if client.name == "ruff" then
+						-- ruff runs as formatter and linter
+						client.server_capabilities.semanticTokensProvider = nil
+						client.server_capabilities.hoverProvider = false
+					else
+						client.server_capabilities.semanticTokensProvider = nil
+						client.server_capabilities.documentFormattingProvider = false
+						client.server_capabilities.documentFormattingRangeProvider = false
+					end
 				end,
 			})
 
@@ -42,7 +48,7 @@ return {
 					"jsonls",
 					"lua_ls",
 					"pyright",
-					--'ruff',
+					"ruff",
 					"tsserver",
 					"vimls",
 				},
@@ -66,12 +72,23 @@ return {
 					null_ls_opts.on_attach(client, bufnr)
 				end,
 				sources = {
+					--typescript
 					--require("none-ls.diagnostics.eslint_d"),
 					require("none-ls.diagnostics.eslint"),
 					--null_ls.builtins.formatting.prettierd,
 					null_ls.builtins.formatting.prettier,
-					require("none-ls.formatting.ruff"),
+
+					--python
+					--require("none-ls.formatting.ruff"),
+					--require("none-ls.diagnostics.ruff"),
+					--null_ls.builtins.formatting.black,
+
+					--lua
 					null_ls.builtins.formatting.stylua,
+
+					--shell
+					null_ls.builtins.formatting.shfmt,
+					--null_ls.builtins.formatting.shellharden,
 				},
 			})
 
@@ -79,13 +96,17 @@ return {
 			require("mason-null-ls").setup({
 				--ensure_installed = nil,
 				ensure_installed = {
-					"clang-format",
+					--"black",
+					--"clang-format",
 					--"eslint_d",
 					"jsonlint",
 					--"lua-formatter",
 					--"prettierd",
 					"prettier",
-					"ruff",
+					--"ruff",
+					"shfmt",
+					--"shellharden",
+					"shellcheck",
 					"stylua",
 				},
 				automatic_installation = true, -- You can still set this to `true`

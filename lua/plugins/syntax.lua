@@ -73,8 +73,8 @@ return {
 				vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 			end)
 
---			require("ibl").setup({ indent = { highlight = highlight } })
---			-- rainbow-delimiters.nvim integration
+			--			require("ibl").setup({ indent = { highlight = highlight } })
+			--			-- rainbow-delimiters.nvim integration
 
 			vim.g.rainbow_delimiters = { highlight = highlight }
 			require("ibl").setup({ scope = { highlight = highlight } })
@@ -83,12 +83,16 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
-		opts = {
-			-- Defaults
-			enable_close = true, -- Auto close tags
-			enable_rename = true, -- Auto rename pairs of tags
-			enable_close_on_slash = true, -- Auto close on trailing </
-		},
+		config = function()
+			require("nvim-ts-autotag").setup({
+				opts = {
+					-- Defaults
+					enable_close = true, -- Auto close tags
+					enable_rename = true, -- Auto rename pairs of tags
+					enable_close_on_slash = true, -- Auto close on trailing </
+				},
+			})
+		end,
 	},
 	{
 		"nvim-treesitter/playground",

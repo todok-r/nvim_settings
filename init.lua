@@ -32,16 +32,6 @@ vim.api.nvim_set_keymap("c", "<C-D>", "<Delete>", {})
 
 vim.api.nvim_set_keymap("n", "<leader>so", "<cmd>source $MYVIMRC<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>tabe $MYVIMRC<CR>", {})
+vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {})
 
---vim.cmd("colorscheme kanagawa-lotus")
-vim.cmd("colorscheme kanagawa")
---vim.cmd("colorscheme gruvbox")
---[[
-vim.g.gruvbox_material_background = "hard"
-vim.g.gruvbox_material_better_performance = 1
-vim.o.background = "light"
-if vim.fn.has("termguicolors") then
-	vim.opt.termguicolors = true
-end
-vim.cmd("colorscheme gruvbox-material")
-]]
+vim.cmd("colorscheme rose-pine-moon")
