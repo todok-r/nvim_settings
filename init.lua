@@ -32,6 +32,6 @@ vim.api.nvim_set_keymap("c", "<C-D>", "<Delete>", {})
 
 vim.api.nvim_set_keymap("n", "<leader>so", "<cmd>source $MYVIMRC<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>tabe $MYVIMRC<CR>", {})
-vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {})
+--vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {})
 
 vim.cmd("colorscheme rose-pine-moon")
