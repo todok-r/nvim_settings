@@ -75,7 +75,7 @@ return {
 					--typescript
 					--require("none-ls.diagnostics.eslint_d"),
 					require("none-ls.diagnostics.eslint"),
-					require("none-ls.code_actions.eslint"),
+					--require("none-ls.code_actions.eslint"),
 					--null_ls.builtins.formatting.prettierd,
 					null_ls.builtins.formatting.prettier,
 
@@ -154,7 +154,8 @@ return {
 				vim.keymap.set("n", "[g", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
 				vim.keymap.set("n", "]g", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
 				vim.keymap.set("n", "<leader>F", "<cmd>Lspsaga finder<CR>", bufopts)
-				vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
+				--vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
+				vim.keymap.set("n", "<leader>rn", ":IncRename ", bufopts)
 			end)
 		end,
 	},
