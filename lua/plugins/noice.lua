@@ -25,6 +25,8 @@ return {
 					lsp_doc_border = false, -- add a border to hover docs and signature help
 				},
 			})
+			vim.keymap.set("n", "<leader>noh", "<cmd>NoiceHistory<cr>")
+			vim.keymap.set("n", "<leader>not", "<cmd>NoiceTelescope<cr>")
 		end,
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
