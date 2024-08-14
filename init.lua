@@ -35,14 +35,3 @@ vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>tabe $MYVIMRC<CR>", {})
 --vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {})
 
 vim.cmd("colorscheme rose-pine-moon")
-
-vim.api.nvim_create_augroup("MyDefaultIndent", {})
-vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-	group = "MyDefaultIndent",
-	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
-	callback = function()
-		vim.opt_local.tabstop = 2
-		vim.opt_local.softtabstop = 2
-		vim.opt_local.shiftwidth = 2
-	end,
-})
