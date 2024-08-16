@@ -154,8 +154,8 @@ return {
 				vim.keymap.set("n", "[g", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
 				vim.keymap.set("n", "]g", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
 				vim.keymap.set("n", "<leader>F", "<cmd>Lspsaga finder<CR>", bufopts)
-				--vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
-				vim.keymap.set("n", "<leader>rn", ":IncRename ", bufopts)
+				vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
+				--vim.keymap.set("n", "<leader>rn", ":IncRename", bufopts)
 			end)
 		end,
 	},
