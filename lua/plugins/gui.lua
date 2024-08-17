@@ -64,5 +64,11 @@ return {
 		end,
 	},
 	{ "rose-pine/neovim", name = "rose-pine" },
+	{
+		"lewis6991/satellite.nvim",
+		config = function()
+			require("satellite").setup()
+		end,
+	},
 	--	{'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'}
 }
