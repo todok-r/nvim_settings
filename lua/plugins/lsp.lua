@@ -237,7 +237,7 @@ return {
 			"nvim-tree/nvim-web-devicons", -- optional
 		},
 	},
-	{ "kosayoda/nvim-lightbulb" },
+	-- { "kosayoda/nvim-lightbulb" },
 	{
 		"antosha417/nvim-lsp-file-operations",
 		dependencies = {
