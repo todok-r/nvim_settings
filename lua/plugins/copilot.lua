@@ -12,10 +12,10 @@ return {
 					hide_during_completion = true,
 					debounce = 75,
 					keymap = {
-						accept = "<tab>",
-						next = "<C-n>",
-						prev = "<C-p>",
-						dismiss = "<Esc>",
+						accept = "<M-l>",
+						next = "<M-n>",
+						prev = "<M-p>",
+						dismiss = "M-]",
 					},
 				},
 			})
