@@ -3,7 +3,11 @@ return {
 	{
 		"williamboman/mason.nvim",
 		config = function()
-			require("mason").setup({})
+			require("mason").setup({
+				ensure_installed = {
+					-- "tsserver",
+				},
+			})
 		end,
 	},
 	{
@@ -49,7 +53,7 @@ return {
 					"lua_ls",
 					"pyright",
 					"ruff",
-					"tsserver",
+					-- "tsserver",
 					"vimls",
 				},
 				automatic_installation = true,
@@ -261,5 +265,10 @@ return {
 		config = function(_, opts)
 			require("lsp_signature").setup(opts)
 		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 }
