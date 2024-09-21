@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 require("config.lazy")
+require("config.keymaps")
 
 vim.opt.mouse = ""
 vim.opt.foldmethod = "marker"
@@ -23,18 +24,5 @@ vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-
-vim.api.nvim_set_keymap("", "<F1>", "<ESC>", {})
-vim.api.nvim_set_keymap("c", "<C-B>", "<Left>", {})
-vim.api.nvim_set_keymap("c", "<C-A>", "<Home>", {})
-vim.api.nvim_set_keymap("c", "<C-E>", "<End>", {})
-vim.api.nvim_set_keymap("c", "<C-D>", "<Delete>", {})
-
-vim.api.nvim_set_keymap("n", "<leader>so", "<cmd>source $MYVIMRC<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>tabe $MYVIMRC<CR>", {})
---vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {})
-vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>cnext<CR>", {})
-vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>cprev<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>lcd", ":lcd %:p:h<CR>", { noremap = true, silent = true })
 
 vim.cmd("colorscheme rose-pine-moon")

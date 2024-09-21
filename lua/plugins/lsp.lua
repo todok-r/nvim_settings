@@ -118,7 +118,7 @@ return {
 				--handlers = { },
 			})
 
-			lsp_zero.on_attach(function(client, bufnr)
+			lsp_zero.on_attach(function(_, bufnr)
 				--print("lsp-zero attach", client.id, bufnr)
 				-- see :help lsp-zero-keybindings
 				-- to learn the available actions
@@ -132,34 +132,7 @@ return {
 				--print(vim.inspect(client))
 				]]
 
-				local bufopts = { noremap = true, silent = true, buffer = bufnr }
-				lsp_zero.default_keymaps({ buffer = bufnr })
-				vim.keymap.set("n", "<leader><C-k>", vim.lsp.buf.signature_help, bufopts)
-				vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
-				--	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-				vim.keymap.set("n", "<leader>gq", vim.lsp.buf.format, bufopts)
-				--vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, bufopts)
-				vim.keymap.set("n", "<leader>gr", "<cmd>Telescope lsp_references<cr>", bufopts)
-				--vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-				vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-				vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-				vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, bufopts)
-				vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, bufopts)
-				vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, bufopts)
-				vim.keymap.set("n", "<leader>gI", "<cmd>Lspsaga peek_definition<CR>", bufopts)
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-				--vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, bufopts)
-				--vim.keymap.set("n", "]g", vim.diagnostic.goto_next, bufopts)
-
-				vim.keymap.set("v", "<leader>gq", vim.lsp.buf.format, bufopts)
-
-				--vim.keymap.set("n", "K", "<cmd>Lspsaga hover<CR>", bufopts)
-				vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", bufopts)
-				vim.keymap.set("n", "[g", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
-				vim.keymap.set("n", "]g", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
-				vim.keymap.set("n", "<leader>F", "<cmd>Lspsaga finder<CR>", bufopts)
-				vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
-				--vim.keymap.set("n", "<leader>rn", ":IncRename", bufopts)
+				require("config.keymaps").lsp_keymaps(bufnr)
 			end)
 		end,
 	},

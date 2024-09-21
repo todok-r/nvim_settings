@@ -50,7 +50,6 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		config = function()
-			vim.api.nvim_set_keymap("n", "<leader>ibl", "<cmd>IBLToggle<CR>", {})
 			local highlight = {
 				"RainbowRed",
 				"RainbowYellow",
