@@ -33,5 +33,8 @@ vim.api.nvim_set_keymap("c", "<C-D>", "<Delete>", {})
 vim.api.nvim_set_keymap("n", "<leader>so", "<cmd>source $MYVIMRC<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>tabe $MYVIMRC<CR>", {})
 --vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {})
+vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>cnext<CR>", {})
+vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>cprev<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>lcd", ":lcd %:p:h<CR>", { noremap = true, silent = true })
 
 vim.cmd("colorscheme rose-pine-moon")
