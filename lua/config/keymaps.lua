@@ -89,7 +89,8 @@ vim.keymap.set("n", "<leader>Sp", '<cmd>lua require("spectre").open_file_search(
 })
 
 --nvim-tree
-vim.keymap.set("n", "<leader>nt", "<cmd>NvimTreeToggle<CR>", {})
+vim.keymap.set("n", "<leader>ntt", "<cmd>NvimTreeToggle<CR>", {})
+vim.keymap.set("n", "<leader>ntf", "<cmd>NvimTreeFocus<CR>", {})
 
 --nvim-tree-preview
 function M.nvim_tree_preview_keymaps(bufnr)
