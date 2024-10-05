@@ -38,13 +38,38 @@ vim.keymap.set("n", "s", require("substitute").operator, { noremap = true, desc 
 vim.keymap.set("n", "ss", require("substitute").line, { noremap = true, desc = "Substitute: Line" })
 vim.keymap.set("n", "S", require("substitute").eol, { noremap = true, desc = "Substitute: End of Line" })
 vim.keymap.set("x", "s", require("substitute").visual, { noremap = true, desc = "Substitute: Visual" })
-vim.keymap.set("n", "<leader>s", require("substitute.range").operator, { noremap = true, desc = "Substitute Range: Operator" })
-vim.keymap.set("x", "<leader>s", require("substitute.range").visual, { noremap = true, desc = "Substitute Range: Visual" })
+vim.keymap.set(
+	"n",
+	"<leader>s",
+	require("substitute.range").operator,
+	{ noremap = true, desc = "Substitute Range: Operator" }
+)
+vim.keymap.set(
+	"x",
+	"<leader>s",
+	require("substitute.range").visual,
+	{ noremap = true, desc = "Substitute Range: Visual" }
+)
 vim.keymap.set("n", "<leader>ss", require("substitute.range").word, { noremap = true, desc = "Substitute Range: Word" })
-vim.keymap.set("n", "sx", require("substitute.exchange").operator, { noremap = true, desc = "Substitute Exchange: Operator" })
+vim.keymap.set(
+	"n",
+	"sx",
+	require("substitute.exchange").operator,
+	{ noremap = true, desc = "Substitute Exchange: Operator" }
+)
 vim.keymap.set("n", "sxx", require("substitute.exchange").line, { noremap = true, desc = "Substitute Exchange: Line" })
-vim.keymap.set("x", "X", require("substitute.exchange").visual, { noremap = true, desc = "Substitute Exchange: Visual" })
-vim.keymap.set("n", "sxc", require("substitute.exchange").cancel, { noremap = true, desc = "Substitute Exchange: Cancel" })
+vim.keymap.set(
+	"x",
+	"X",
+	require("substitute.exchange").visual,
+	{ noremap = true, desc = "Substitute Exchange: Visual" }
+)
+vim.keymap.set(
+	"n",
+	"sxc",
+	require("substitute.exchange").cancel,
+	{ noremap = true, desc = "Substitute Exchange: Cancel" }
+)
 
 --neotest
 vim.keymap.set("n", "<leader>Ntr", "<cmd>lua require('neotest').run.run()<cr>")
@@ -294,5 +319,9 @@ function M.lsp_keymaps(bufnr)
 		vim.tbl_extend("force", bufopts, { desc = "Lspsaga: Rename" })
 	)
 end
+
+--minty
+vim.keymap.set("n", "<leader>mh", "<cmd>lua require('minty.huefy').open()<CR>", { desc = "open minty huefy" })
+vim.keymap.set("n", "<leader>ms", "<cmd>lua require('minty.shades').open()<CR>", { desc = "open minty shades" })
 
 return M
