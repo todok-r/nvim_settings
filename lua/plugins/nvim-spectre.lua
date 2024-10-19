@@ -5,5 +5,6 @@ return {
 		config = function()
 			require("spectre").setup()
 		end,
+		keys = require("config.keymaps").setup_spectre_keymaps(),
 	},
 }

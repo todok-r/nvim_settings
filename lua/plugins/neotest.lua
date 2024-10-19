@@ -1,5 +1,6 @@
 return {
 	{
+		Lazy = true,
 		"nvim-neotest/neotest",
 		dependencies = {
 			"nvim-neotest/nvim-nio",
@@ -14,5 +15,6 @@ return {
 				adapters = { require("neotest-vitest"), require("neotest-python") },
 			})
 		end,
+		keys = require("config.keymaps").setup_neotest_keymaps(),
 	},
 }

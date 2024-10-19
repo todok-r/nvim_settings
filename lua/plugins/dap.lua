@@ -1,6 +1,7 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
+		keys = require("config.keymaps").setup_dap_keymaps(),
 	},
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	{

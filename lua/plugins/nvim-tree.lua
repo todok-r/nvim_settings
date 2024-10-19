@@ -37,5 +37,6 @@ return {
 				end,
 			})
 		end,
+		keys = require("config.keymaps").setup_nvim_tree_keymaps(),
 	},
 }

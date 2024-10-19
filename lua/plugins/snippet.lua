@@ -8,6 +8,7 @@ return {
 		build = "make install_jsregexp",
 		config = function()
 			require("luasnip.loaders.from_snipmate").lazy_load()
+			require("config.keymaps").setup_snippet_keymaps()
 		end,
 	},
 }

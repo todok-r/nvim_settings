@@ -14,108 +14,261 @@ vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>cnext<CR>", {})
 vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>cprev<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>lcd", ":lcd %:p:h<CR>", { noremap = true, silent = true })
 
---copilot
-vim.keymap.set("n", "<leader>cct", "<cmd>CopilotChatToggle<cr>", { desc = "toggle copilot chat window" })
-vim.keymap.set("v", "<leader>ccq", function()
-	local input = vim.fn.input("Quick Chat: ")
-	local selection = require("mylib.utils").get_visual_selection()
+--Copilot
+function M.setup_Copilot_keymaps()
+	return {
+		accept = "<M-l>",
+		next = "<M-n>",
+		prev = "<M-p>",
+		dismiss = "M-]",
+	}
+end
 
-	input = input .. " " .. selection .. "\n"
+--CopilotChat
+function M.setup_CopilotChat_keymaps()
+	return {
+		{
+			"<leader>cc",
+			"<cmd>CopilotChat<cr>",
+			{ desc = "open copilot chat window" },
+		},
+		{
+			"<leader>cct",
+			"<cmd>CopilotChatToggle<cr>",
+			{ desc = "toggle copilot chat window" },
+		},
+		{
+			"<leader>ccq",
+			function()
+				local input = vim.fn.input("Quick Chat: ")
+				local selection = require("mylib.utils").get_visual_selection()
 
-	if input ~= "" then
-		require("CopilotChat").ask(input)
-	end
-end, { desc = "ask copilot chat about selected lines" })
-vim.keymap.set("n", "<leader>ccq", function()
-	local input = vim.fn.input("Quick Chat: ")
-	if input ~= "" then
-		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-	end
-end, { desc = "CopilotChat - Quick chat" })
+				input = input .. " " .. selection .. "\n"
+
+				if input ~= "" then
+					require("CopilotChat").ask(input)
+				end
+			end,
+			mode = "v",
+			desc = "ask copilot chat about selected lines",
+		},
+		{
+			"<leader>ccq",
+			function()
+				local input = vim.fn.input("Quick Chat: ")
+				if input ~= "" then
+					require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+				end
+			end,
+			{ desc = "CopilotChat - Quick chat" },
+		},
+	}
+end
 
 --substitute
-vim.keymap.set("n", "s", require("substitute").operator, { noremap = true, desc = "Substitute: Operator" })
-vim.keymap.set("n", "ss", require("substitute").line, { noremap = true, desc = "Substitute: Line" })
-vim.keymap.set("n", "S", require("substitute").eol, { noremap = true, desc = "Substitute: End of Line" })
-vim.keymap.set("x", "s", require("substitute").visual, { noremap = true, desc = "Substitute: Visual" })
-vim.keymap.set(
-	"n",
-	"<leader>s",
-	require("substitute.range").operator,
-	{ noremap = true, desc = "Substitute Range: Operator" }
-)
-vim.keymap.set(
-	"x",
-	"<leader>s",
-	require("substitute.range").visual,
-	{ noremap = true, desc = "Substitute Range: Visual" }
-)
-vim.keymap.set("n", "<leader>ss", require("substitute.range").word, { noremap = true, desc = "Substitute Range: Word" })
-vim.keymap.set(
-	"n",
-	"sx",
-	require("substitute.exchange").operator,
-	{ noremap = true, desc = "Substitute Exchange: Operator" }
-)
-vim.keymap.set("n", "sxx", require("substitute.exchange").line, { noremap = true, desc = "Substitute Exchange: Line" })
-vim.keymap.set(
-	"x",
-	"X",
-	require("substitute.exchange").visual,
-	{ noremap = true, desc = "Substitute Exchange: Visual" }
-)
-vim.keymap.set(
-	"n",
-	"sxc",
-	require("substitute.exchange").cancel,
-	{ noremap = true, desc = "Substitute Exchange: Cancel" }
-)
+function M.setup_substitute_keymaps()
+	return {
+		{
+			"s",
+			function()
+				require("substitute").operator()
+			end,
+			desc = "Substitute: Operator",
+		},
+		{
+			"ss",
+			function()
+				require("substitute").line()
+			end,
+			desc = "Substitute: Line",
+		},
+		{
+			"S",
+			function()
+				require("substitute").eol()
+			end,
+			desc = "Substitute: End of Line",
+		},
+		{
+			"s",
+			function()
+				require("substitute").visual()
+			end,
+			mode = "x",
+			desc = "Substitute: Visual",
+		},
+		{
+			"<leader>s",
+			function()
+				require("substitute.range").operator()
+			end,
+			desc = "Substitute Range: Operator",
+		},
+		{
+			"<leader>s",
+			function()
+				require("substitute.range").visual()
+			end,
+			mode = "x",
+			desc = "Substitute Range: Visual",
+		},
+		{
+			"<leader>ss",
+			function()
+				require("substitute.range").word()
+			end,
+			desc = "Substitute Range: Word",
+		},
+		{
+			"sx",
+			function()
+				require("substitute.exchange").operator()
+			end,
+			desc = "Substitute Exchange: Operator",
+		},
+		{
+			"sxx",
+			function()
+				require("substitute.exchange").line()
+			end,
+			desc = "Substitute Exchange: Line",
+		},
+		{
+			"X",
+			function()
+				require("substitute.exchange").visual()
+			end,
+			mode = "x",
+			desc = "Substitute Exchange: Visual",
+		},
+		{
+			"sxc",
+			function()
+				require("substitute.exchange").cancel()
+			end,
+			desc = "Substitute Exchange: Cancel",
+		},
+	}
+end
 
 --neotest
-vim.keymap.set("n", "<leader>Ntr", "<cmd>lua require('neotest').run.run()<cr>")
-vim.keymap.set("n", "<leader>Nts", "<cmd>lua require('neotest').run.stop()<cr>")
-vim.keymap.set("n", "<leader>Nto", "<cmd>lua require('neotest').output.open()<cr>")
-vim.keymap.set("n", "<leader>Ntp", "<cmd>lua require('neotest').output_panel.toggle()<cr>")
+function M.setup_neotest_keymaps()
+	return {
+		{
+			"<leader>Ntr",
+			function()
+				require("neotest").run.run()
+			end,
+			mode = "n",
+			desc = "run neotest",
+		},
+		{
+			"<leader>Nts",
+			function()
+				require("neotest").run.stop()
+			end,
+			mode = "n",
+			desc = "stop neotest",
+		},
+		{
+			"<leader>Nto",
+			function()
+				require("neotest").output.open()
+			end,
+			mode = "n",
+			desc = "output neotest",
+		},
+		{
+			"<leader>Ntp",
+			function()
+				require("neotest").output_panel.toggle()
+			end,
+			mode = "n",
+			desc = "toggle neotest",
+		},
+	}
+end
 
 --snippet
-local ls = require("luasnip")
+function M.setup_snippet_keymaps()
+	local ls = require("luasnip")
 
-vim.keymap.set({ "i" }, "<C-K>", function()
-	ls.expand()
-end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-L>", function()
-	ls.jump(1)
-end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-J>", function()
-	ls.jump(-1)
-end, { silent = true })
+	vim.keymap.set({ "i" }, "<C-K>", function()
+		ls.expand()
+	end, { silent = true })
+	vim.keymap.set({ "i", "s" }, "<C-L>", function()
+		ls.jump(1)
+	end, { silent = true })
+	vim.keymap.set({ "i", "s" }, "<C-J>", function()
+		ls.jump(-1)
+	end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<C-E>", function()
-	if ls.choice_active() then
-		ls.change_choice(1)
-	end
-end, { silent = true })
+	vim.keymap.set({ "i", "s" }, "<C-E>", function()
+		if ls.choice_active() then
+			ls.change_choice(1)
+		end
+	end, { silent = true })
+end
 
 --undotree
-vim.api.nvim_set_keymap("n", "<leader>ut", "<cmd>UndotreeToggle<CR>", {})
+vim.keymap.set({ "n" }, "<leader>ut", function()
+	vim.cmd("UndotreeToggle")
+end, { desc = "Toggle Undotree" })
 
 --nvim-spectre
-vim.keymap.set("n", "<leader>St", '<cmd>lua require("spectre").toggle()<CR>', {
-	desc = "Toggle Spectre",
-})
-vim.keymap.set("n", "<leader>Sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
-	desc = "Search current word",
-})
-vim.keymap.set("v", "<leader>Sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
-	desc = "Search current word",
-})
-vim.keymap.set("n", "<leader>Sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-	desc = "Search on current file",
-})
+function M.setup_spectre_keymaps()
+	return {
+		{
+			"<leader>St",
+			function()
+				require("spectre").toggle()
+			end,
+			desc = "Toggle Spectre",
+		},
+		{
+			"<leader>Sw",
+			function()
+				require("spectre").open_visual({ select_word = true })
+			end,
+			desc = "Search current word",
+		},
+		{
+			"<leader>Sw",
+			function()
+				require("spectre").open_visual()
+			end,
+			mode = "v",
+			desc = "Search current word",
+		},
+		{
+			"<leader>Sp",
+			function()
+				require("spectre").open_file_search({ select_word = true })
+			end,
+			desc = "Search on current file",
+		},
+	}
+end
 
 --nvim-tree
-vim.keymap.set("n", "<leader>ntt", "<cmd>NvimTreeToggle<CR>", {})
-vim.keymap.set("n", "<leader>ntf", "<cmd>NvimTreeFocus<CR>", {})
+function M.setup_nvim_tree_keymaps()
+	return {
+		{
+			"ntt",
+			function()
+				vim.cmd("NvimTreeToggle")
+			end,
+			desc = "Toggle NvimTree",
+		},
+		{
+			"ntf",
+			function()
+				vim.cmd("NvimTreeFocus")
+			end,
+			desc = "Focus NvimTree",
+		},
+	}
+end
 
 --nvim-tree-preview
 function M.nvim_tree_preview_keymaps(bufnr)
@@ -158,23 +311,103 @@ function M.nvim_tree_preview_keymaps(bufnr)
 end
 
 --DAP
-vim.keymap.set("n", "<leader>dc", '<cmd>lua require("dap").continue()<cr>')
-vim.keymap.set("n", "<leader>dsv", '<cmd>lua require("dap").step_over() <cr>')
-vim.keymap.set("n", "<leader>dsi", '<cmd>lua require("dap").step_into() <cr>')
-vim.keymap.set("n", "<leader>dso", '<cmd>lua require("dap").step_out() <cr>')
-vim.keymap.set("n", "<Leader>db", '<cmd>lua require("dap").toggle_breakpoint() <cr>')
-vim.keymap.set("n", "<Leader>dB", '<cmd>lua require("dap").set_breakpoint() <cr>')
-vim.keymap.set(
-	"n",
-	"<Leader>dlp",
-	'<cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) <cr>'
-)
-vim.keymap.set("n", "<Leader>dr", '<cmd>lua require("dap").repl.open() <cr>')
-vim.keymap.set("n", "<Leader>dl", '<cmd>lua require("dap").run_last() <cr>')
-vim.keymap.set({ "n", "v" }, "<Leader>dh", '<cmd>lua require("dap.ui.widgets").hover() <cr>')
-vim.keymap.set({ "n", "v" }, "<Leader>dp", '<cmd>lua require("dap.ui.widgets").preview() <cr>')
-vim.keymap.set("n", "<Leader>df", '<cmd>lua require("dap.ui.widgets").widgets.centered_float(widgets.frames)<cr>')
-vim.keymap.set("n", "<Leader>dsc", '<cmd>lua require("dap.ui.widgets").centered_float(widgets.scopes)')
+function M.setup_dap_keymaps()
+	return {
+		{
+			"<leader>dc",
+			function()
+				require("dap").continue()
+			end,
+			desc = "DAP: Continue",
+		},
+		{
+			"<leader>dsv",
+			function()
+				require("dap").step_over()
+			end,
+			desc = "DAP: Step Over",
+		},
+		{
+			"<leader>dsi",
+			function()
+				require("dap").step_into()
+			end,
+			desc = "DAP: Step Into",
+		},
+		{
+			"<leader>dso",
+			function()
+				require("dap").step_out()
+			end,
+			desc = "DAP: Step Out",
+		},
+		{
+			"<leader>db",
+			function()
+				require("dap").toggle_breakpoint()
+			end,
+			desc = "DAP: Toggle Breakpoint",
+		},
+		{
+			"<leader>dB",
+			function()
+				require("dap").set_breakpoint()
+			end,
+			desc = "DAP: Set Breakpoint",
+		},
+		{
+			"<leader>dlp",
+			function()
+				require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+			end,
+			desc = "DAP: Log Point",
+		},
+		{
+			"<leader>dr",
+			function()
+				require("dap").repl.open()
+			end,
+			desc = "DAP: REPL",
+		},
+		{
+			"<leader>dl",
+			function()
+				require("dap").run_last()
+			end,
+			desc = "DAP: Run Last",
+		},
+		{
+			"<leader>dh",
+			function()
+				require("dap.ui.widgets").hover()
+			end,
+			mode = { "n", "v" },
+			desc = "DAP: Hover",
+		},
+		{
+			"<leader>dp",
+			function()
+				require("dap.ui.widgets").preview()
+			end,
+			mode = { "n", "v" },
+			desc = "DAP: Preview",
+		},
+		{
+			"<leader>df",
+			function()
+				require("dap.ui.widgets").centered_float(widgets.frames)
+			end,
+			desc = "DAP: Frames",
+		},
+		{
+			"<leader>dsc",
+			function()
+				require("dap.ui.widgets").centered_float(widgets.scopes)
+			end,
+			desc = "DAP: Scopes",
+		},
+	}
+end
 
 function M.toggleterm_keymaps()
 	local Terminal = require("toggleterm.terminal").Terminal
@@ -204,13 +437,34 @@ function M.toggleterm_keymaps()
 end
 
 --todo-comments
-vim.keymap.set("n", "<leader>tcn", function()
-	require("todo-comments").jump_next()
-end, { desc = "Next todo comment" })
-
-vim.keymap.set("n", "<leader>tcp", function()
-	require("todo-comments").jump_prev()
-end, { desc = "Previous todo comment" })
+function M.setup_todo_comments_keymaps()
+	return {
+		{
+			"<leader>tcl",
+			"<cmd>TodoLocList<CR>",
+			desc = "show todo list",
+		},
+		{
+			"<leader>tcq",
+			"<cmd>TodoQuickFix<CR>",
+			desc = "show todo quickfix",
+		},
+		{
+			"<leader>tcn",
+			function()
+				require("todo-comments").jump_next()
+			end,
+			desc = "Next todo comment",
+		},
+		{
+			"<leader>tcp",
+			function()
+				require("todo-comments").jump_prev()
+			end,
+			desc = "Previous todo comment",
+		},
+	}
+end
 
 --indent-blankline
 vim.api.nvim_set_keymap("n", "<leader>ibl", "<cmd>IBLToggle<CR>", {})

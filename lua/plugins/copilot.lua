@@ -11,12 +11,7 @@ return {
 					auto_trigger = true,
 					hide_during_completion = true,
 					debounce = 75,
-					keymap = {
-						accept = "<M-l>",
-						next = "<M-n>",
-						prev = "<M-p>",
-						dismiss = "M-]",
-					},
+					keymap = require("config.keymaps").setup_Copilot_keymaps(),
 				},
 			})
 		end,
@@ -32,5 +27,6 @@ return {
 		config = function()
 			require("CopilotChat").setup({ debug = true })
 		end,
+		keys = require("config.keymaps").setup_CopilotChat_keymaps(),
 	},
 }
