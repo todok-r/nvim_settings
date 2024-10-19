@@ -578,4 +578,37 @@ end
 vim.keymap.set("n", "<leader>mh", "<cmd>lua require('minty.huefy').open()<CR>", { desc = "open minty huefy" })
 vim.keymap.set("n", "<leader>ms", "<cmd>lua require('minty.shades').open()<CR>", { desc = "open minty shades" })
 
+--harpoon
+function M.setup_harpoon_keymaps()
+	local harpoon = require("harpoon")
+
+	vim.keymap.set("n", "<leader>ha", function()
+		harpoon:list():add()
+	end, { desc = "Add current buffer to Harpoon" })
+	vim.keymap.set("n", "<leader>hl", function()
+		harpoon.ui:toggle_quick_menu(harpoon:list())
+	end, { desc = "Toggle Harpoon list" })
+
+	vim.keymap.set("n", "<leader>h1", function()
+		harpoon:list():select(1)
+	end, { desc = "Select Harpoon list 1" })
+	vim.keymap.set("n", "<leader>h2", function()
+		harpoon:list():select(2)
+	end, { desc = "Select Harpoon list 2" })
+	vim.keymap.set("n", "<leader>h3", function()
+		harpoon:list():select(3)
+	end, { desc = "Select Harpoon list 3" })
+	vim.keymap.set("n", "<leader>h4", function()
+		harpoon:list():select(4)
+	end, { desc = "Select Harpoon list 4" })
+
+	-- Toggle previous & next buffers stored within Harpoon list
+	vim.keymap.set("n", "<leader>hp", function()
+		harpoon:list():prev()
+	end, { desc = "Harpoon: Previous" })
+	vim.keymap.set("n", "<leader>hn", function()
+		harpoon:list():next()
+	end, { desc = "Harpoon: Next" })
+end
+
 return M
