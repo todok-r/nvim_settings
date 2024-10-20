@@ -254,14 +254,14 @@ end
 function M.setup_nvim_tree_keymaps()
 	return {
 		{
-			"ntt",
+			"<leader>ntt",
 			function()
 				vim.cmd("NvimTreeToggle")
 			end,
 			desc = "Toggle NvimTree",
 		},
 		{
-			"ntf",
+			"<leader>ntf",
 			function()
 				vim.cmd("NvimTreeFocus")
 			end,
