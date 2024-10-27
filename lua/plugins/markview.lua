@@ -1,4 +1,5 @@
 return {
+	--[[
 	{
 		"OXY2DEV/markview.nvim",
 		lazy = false, -- Recommended
@@ -9,4 +10,5 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
+]]
 }

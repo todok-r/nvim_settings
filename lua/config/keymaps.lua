@@ -13,6 +13,7 @@ vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>tabe $MYVIMRC<CR>", {})
 vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>cnext<CR>", {})
 vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>cprev<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>lcd", ":lcd %:p:h<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>cd", ":cd %:p:h<CR>", { noremap = true, silent = true })
 
 --Copilot
 function M.setup_Copilot_keymaps()

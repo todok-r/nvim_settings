@@ -5,7 +5,7 @@ return {
 		config = function()
 			require("mason").setup({
 				ensure_installed = {
-					-- "tsserver",
+					"tailwindcss-language-server",
 				},
 			})
 		end,

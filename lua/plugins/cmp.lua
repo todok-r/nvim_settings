@@ -57,6 +57,7 @@ return {
 							return vim_item
 						end
 						]]
+						before = require("tailwind-tools.cmp").lspkind_format,
 					}),
 				},
 			})
