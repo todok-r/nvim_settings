@@ -649,6 +649,15 @@ function M.setup_telescope_keymaps()
 	vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 	vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 	vim.keymap.set("n", "<leader>ft", "<cmd>Telescope<cr>", { desc = "Telescope" })
+
+	local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+	vim.keymap.set("n", "<leader>fG", live_grep_args_shortcuts.grep_word_under_cursor, { desc = "grep under cursor" })
+	vim.keymap.set(
+		"x",
+		"<leader>fv",
+		live_grep_args_shortcuts.grep_visual_selection,
+		{ desc = "grep visual selection" }
+	)
 end
 
 --kulala
