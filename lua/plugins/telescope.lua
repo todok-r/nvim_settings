@@ -17,17 +17,7 @@ return {
 			-- To get fzf loaded and working with telescope, you need to call
 			-- load_extension, somewhere after setup function:
 			require("telescope").load_extension("fzf")
-
-			local builtin = require("telescope.builtin")
-			local wk = require("which-key")
-			wk.add({
-				mode = { "n" }, -- NORMAL and VISUAL mode
-				{ "<leader>ff", builtin.find_files, desc = "Telescope find files" },
-				{ "<leader>fg", builtin.live_grep, desc = "Telescope live grep" },
-				{ "<leader>fb", builtin.buffers, desc = "Telescope buffers" },
-				{ "<leader>fh", builtin.help_tags, desc = "Telescope help tags" },
-				{ "<leader>ft", "<cmd>Telescope<cr>", desc = "Telescope" },
-			})
+			require("config.keymaps").setup_telescope_keymaps()
 		end,
 		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-fzf-native.nvim" },
 	},

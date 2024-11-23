@@ -573,6 +573,9 @@ function M.lsp_keymaps(bufnr)
 		"<cmd>Lspsaga rename<CR>",
 		vim.tbl_extend("force", bufopts, { desc = "Lspsaga: Rename" })
 	)
+	vim.keymap.set("n", "gK", function()
+		require("hover").hover_select()
+	end, { desc = "hover.nvim (select)" })
 end
 
 --minty
@@ -610,6 +613,70 @@ function M.setup_harpoon_keymaps()
 	vim.keymap.set("n", "<leader>hn", function()
 		harpoon:list():next()
 	end, { desc = "Harpoon: Next" })
+end
+
+-- nvim-treesitter-context
+vim.keymap.set("n", "<leader>tsct", "<cmd>TSContextToggle<CR>", { desc = "nvim-treesitter-context toggle" })
+
+-- trouble
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+vim.keymap.set(
+	"n",
+	"<leader>xX",
+	"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+	{ desc = "Buffer Diagnostics (Trouble)" }
+)
+vim.keymap.set("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
+vim.keymap.set(
+	"n",
+	"<leader>xl",
+	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+	{ desc = "LSP Definitions / references / ... (Trouble)" }
+)
+vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
+vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
+
+--which
+vim.keymap.set("n", "<leader>?", function()
+	require("which-key").show({ global = false })
+end, { desc = "Buffer Local Keymaps (which-key)" })
+
+--Telescope
+function M.setup_telescope_keymaps()
+	local builtin = require("telescope.builtin")
+	vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+	vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+	vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+	vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+	vim.keymap.set("n", "<leader>ft", "<cmd>Telescope<cr>", { desc = "Telescope" })
+end
+
+--kulala
+function M.setup_kulala_keymaps()
+	vim.keymap.set(
+		"n",
+		"<leader>ks",
+		"<cmd>lua require('kulala').scratchpad()<cr>",
+		{ noremap = true, silent = true, buffer = true }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>kr",
+		"<cmd>lua require('kulala').run()<cr>",
+		{ noremap = true, silent = true, buffer = true }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>kp",
+		"<cmd>lua require('kulala').jump_prev()<cr>",
+		{ noremap = true, silent = true, buffer = true }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>kn",
+		"<cmd>lua require('kulala').jump_next()<cr>",
+		{ noremap = true, silent = true, buffer = true }
+	)
 end
 
 return M
