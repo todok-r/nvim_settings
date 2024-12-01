@@ -532,6 +532,8 @@ function M.lsp_keymaps(bufnr)
 		vim.tbl_extend("force", bufopts, { desc = "Lspsaga: Peek Definition" })
 	)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", bufopts, { desc = "LSP: Hover" }))
+--	vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
+	vim.keymap.set("n", "<leader>K", require("mylib.hover").hover, {desc = "mylib.hover"})
 	-- vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, bufopts)
 	-- vim.keymap.set("n", "]g", vim.diagnostic.goto_next, bufopts)
 

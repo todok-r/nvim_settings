@@ -1,7 +1,4 @@
-local util = vim.lsp.util
-
-local ___ =
-	"\n─────────────────────────────────────────────────────────────────────────────\n"
+local ___ = "```\n"
 
 local LSPWithDiagSource = {
 	name = "LSPWithDiag",
@@ -9,8 +6,8 @@ local LSPWithDiagSource = {
 	enabled = function()
 		return true
 	end,
-	execute = function(done)
-		local params = util.make_position_params()
+	execute = function(_, done)
+		local params = vim.lsp.util.make_position_params(0, "utf-8")
 		vim.lsp.buf_request_all(0, "textDocument/hover", params, function(responses)
 			local value = ""
 			for _, response in pairs(responses) do
@@ -36,9 +33,9 @@ local LSPWithDiagSource = {
 			value = value:gsub("\r", "")
 
 			if value ~= "" then
-				done({ lines = vim.split(value, "\n", true), filetype = "markdown" })
+				done({ lines = vim.split(value, "\n", { plain = true }), filetype = "markdown" })
 			else
-				done()
+				done(nil)
 			end
 		end)
 	end,
@@ -51,13 +48,13 @@ return {
 			init = function()
 				-- Require providers
 				require("hover").register(LSPWithDiagSource)
-				-- require("hover.providers.lsp")
+				require("hover.providers.lsp")
 				-- require('hover.providers.gh')
 				-- require('hover.providers.gh_user')
 				-- require('hover.providers.jira')
 				-- require("hover.providers.dap")
 				-- require('hover.providers.fold_preview')
-				-- require("hover.providers.diagnostic")
+				require("hover.providers.diagnostic")
 				-- require("hover.providers.man")
 				require("hover.providers.dictionary")
 			end,
@@ -73,10 +70,5 @@ return {
 			},
 			mouse_delay = 1000,
 		})
-
-		-- Setup keymaps
-		--vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
-		--vim.keymap.set("n", "<C-p>", function() require("hover").hover_switch("previous") end, {desc = "hover.nvim (previous source)"})
-		--vim.keymap.set("n", "<C-n>", function() require("hover").hover_switch("next") end, {desc = "hover.nvim (next source)"})
 	end,
 }
