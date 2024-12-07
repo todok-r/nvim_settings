@@ -532,8 +532,8 @@ function M.lsp_keymaps(bufnr)
 		vim.tbl_extend("force", bufopts, { desc = "Lspsaga: Peek Definition" })
 	)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", bufopts, { desc = "LSP: Hover" }))
---	vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
-	vim.keymap.set("n", "<leader>K", require("mylib.hover").hover, {desc = "mylib.hover"})
+	--	vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
+	vim.keymap.set("n", "<leader>K", require("mylib.hover").hover, { desc = "mylib.hover" })
 	-- vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, bufopts)
 	-- vim.keymap.set("n", "]g", vim.diagnostic.goto_next, bufopts)
 
@@ -688,6 +688,12 @@ function M.setup_kulala_keymaps()
 		"<cmd>lua require('kulala').jump_next()<cr>",
 		{ noremap = true, silent = true, buffer = true }
 	)
+end
+
+-- vim-dad-bod
+function M.setup_dadbod_keymaps()
+	vim.keymap.set("n", "<leader>db", ":DB<cr>", { desc = "run dadbod", noremap = true, silent = true, buffer = true })
+	vim.keymap.set("x", "<leader>db", ":DB<cr>", { desc = "run dadbod", noremap = true, silent = true, buffer = true })
 end
 
 return M
