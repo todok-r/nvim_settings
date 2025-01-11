@@ -1,6 +1,7 @@
 -- tailwind-tools.lua
 return {
 	"luckasRanarison/tailwind-tools.nvim",
+	lazy = true,
 	name = "tailwind-tools",
 	build = ":UpdateRemotePlugins",
 	dependencies = {
@@ -8,5 +9,5 @@ return {
 		"nvim-telescope/telescope.nvim", -- optional
 		"neovim/nvim-lspconfig", -- optional
 	},
-	opts = {}, -- your configuration
+--	opts = {}, -- your configuration
 }

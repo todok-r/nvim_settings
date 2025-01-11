@@ -516,7 +516,8 @@ function M.lsp_keymaps(bufnr)
 	vim.keymap.set(
 		"n",
 		"<leader>gd",
-		vim.lsp.buf.definition,
+		--vim.lsp.buf.definition,
+		"<cmd>Lspsaga goto_definition<CR>",
 		vim.tbl_extend("force", bufopts, { desc = "LSP: Definition" })
 	)
 	vim.keymap.set(

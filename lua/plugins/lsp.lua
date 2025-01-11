@@ -4,9 +4,9 @@ return {
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup({
-				ensure_installed = {
-					"tailwindcss-language-server",
-				},
+				-- ensure_installed = {
+				-- 	"tailwindcss-language-server",
+				-- },
 			})
 		end,
 	},
@@ -53,8 +53,10 @@ return {
 					"lua_ls",
 					"basedpyright",
 					"ruff",
+					"rust_analyzer",
 					-- "tsserver",
 					"vimls",
+					"tailwindcss",
 				},
 				automatic_installation = true,
 				handlers = {
@@ -134,6 +136,8 @@ return {
 
 				require("config.keymaps").lsp_keymaps(bufnr)
 			end)
+
+			require("typescript-tools").setup({})
 		end,
 	},
 	{
@@ -242,6 +246,6 @@ return {
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
+		--		opts = {},
 	},
 }

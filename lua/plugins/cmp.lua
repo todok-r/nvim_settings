@@ -5,6 +5,9 @@ return {
 	{ "hrsh7th/cmp-cmdline" },
 	{
 		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"lukas-reineke/cmp-under-comparator",
+		},
 		config = function()
 			local cmp = require("cmp")
 			local lspkind = require("lspkind")
@@ -33,13 +36,24 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					-- { name = 'vsnip' }, -- For vsnip users.
+				}, {
 					{ name = "luasnip" }, -- For luasnip users.
-					-- { name = 'ultisnips' }, -- For ultisnips users.
-					-- { name = 'snippy' }, -- For snippy users.
 				}, {
 					{ name = "buffer" },
 				}),
+				sorting = {
+					comparators = {
+						cmp.config.compare.offset,
+						cmp.config.compare.exact,
+						cmp.config.compare.score,
+						cmp.config.compare.kind,
+						cmp.config.compare.recently_used,
+						require("cmp-under-comparator").under,
+						cmp.config.compare.sort_text,
+						cmp.config.compare.length,
+						cmp.config.compare.order,
+					},
+				},
 				formatting = {
 					format = lspkind.cmp_format({
 						mode = "symbol", -- show only symbol annotations

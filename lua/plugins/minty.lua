@@ -1,1 +1,1 @@
-return { { "nvchad/volt", lazy = true }, { "nvchad/minty", lazy = true } }
+return { { "nvchad/volt", lazy = false }, { "nvchad/minty", lazy = false } }
