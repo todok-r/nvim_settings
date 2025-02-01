@@ -765,4 +765,12 @@ function M.setup_gitsigns_keymaps(bufnr)
 	map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "gitsigns.select_hunk" })
 end
 
+--diffview
+vim.keymap.set("n", "<leader>dvo", "<cmd>DiffviewOpen<cr>", { desc = "DiffviewOpen" })
+vim.keymap.set("n", "<leader>dvc", "<cmd>DiffviewClose<cr>", { desc = "DiffviewClose" })
+vim.keymap.set("n", "<leader>dvh", "<cmd>DiffviewFileHistory<cr>", { desc = "DiffviewFileHistory" })
+vim.keymap.set("n", "<leader>dvH", "<cmd>DiffviewFileHistory %<cr>", { desc = "DiffviewFileHistory current file" })
+vim.keymap.set("n", "<leader>dvt", "<cmd>DiffviewToggleFiles<cr>", { desc = "DiffviewToggleFiles" })
+vim.keymap.set("n", "<leader>dvf", "<cmd>DiffviewFocusFiles<cr>", { desc = "DiffviewFocusFiles" })
+
 return M
