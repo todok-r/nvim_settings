@@ -56,7 +56,7 @@ return {
 					"rust_analyzer",
 					-- "tsserver",
 					"vimls",
-					"tailwindcss",
+--					"tailwindcss",
 				},
 				automatic_installation = true,
 				handlers = {

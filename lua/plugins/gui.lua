@@ -50,6 +50,8 @@ return {
 			extensions = {},
 		},
 	},
+	{ "rose-pine/neovim", name = "rose-pine" },
+	--[[
 	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
 	{
 		"sainnhe/gruvbox-material",
@@ -63,7 +65,7 @@ return {
 			-- vim.cmd.colorscheme('gruvbox-material')
 		end,
 	},
-	{ "rose-pine/neovim", name = "rose-pine" },
+  ]]
 	{
 		"lewis6991/satellite.nvim",
 		config = function()
