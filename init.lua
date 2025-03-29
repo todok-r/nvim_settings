@@ -3,6 +3,7 @@ vim.g.maplocalleader = "\\"
 
 require("config.lazy")
 require("config.keymaps")
+require("config.lsp")
 
 vim.opt.mouse = ""
 vim.opt.foldmethod = "marker"
@@ -24,5 +25,7 @@ vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+
+vim.opt.signcolumn = "yes:1"
 
 vim.cmd("colorscheme rose-pine-moon")

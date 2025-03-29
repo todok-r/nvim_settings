@@ -472,9 +472,7 @@ vim.api.nvim_set_keymap("n", "<leader>ibl", "<cmd>IBLToggle<CR>", {})
 
 --lsp
 function M.lsp_keymaps(bufnr)
-	local lsp_zero = require("lsp-zero")
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	lsp_zero.default_keymaps({ buffer = bufnr })
 
 	vim.keymap.set(
 		"n",
