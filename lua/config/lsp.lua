@@ -30,7 +30,13 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "DiagnosticChanged" }, {
 vim.api.nvim_create_autocmd("ModeChanged", {
   group = vim.api.nvim_create_augroup("diagnostic_redraw", {}),
   callback = function()
-    pcall(vim.diagnostic.show)
+    local mode = vim.api.nvim_get_mode().mode
+    if mode == "v" or mode == "V" or mode == "\x16" then
+      pcall(vim.diagnostic.enable, false)
+    else
+      pcall(vim.diagnostic.enable, true)
+      pcall(vim.diagnostic.show)
+    end
   end,
 })
 
