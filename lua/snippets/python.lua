@@ -4,6 +4,6 @@ local t = ls.text_node
 
 ls.add_snippets("python", {
 	s("if __", {
-		t({ 'if __name__ == "__main__":', "    pass" }),
+		t({ 'if __name__ == "__main__":', "    " }),
 	}),
 })
