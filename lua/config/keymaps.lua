@@ -796,4 +796,11 @@ vim.keymap.set("n", "<leader>dvH", "<cmd>DiffviewFileHistory %<cr>", { desc = "D
 vim.keymap.set("n", "<leader>dvt", "<cmd>DiffviewToggleFiles<cr>", { desc = "DiffviewToggleFiles" })
 vim.keymap.set("n", "<leader>dvf", "<cmd>DiffviewFocusFiles<cr>", { desc = "DiffviewFocusFiles" })
 
+--neovim-tips
+vim.keymap.set("n", "<leader>nto", ":NeovimTips<CR>", { desc = "Neovim tips", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>nte", ":NeovimTipsEdit<CR>", { desc = "Edit your Neovim tips", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>nta", ":NeovimTipsAdd<CR>", { desc = "Add your Neovim tip", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>nth", ":help neovim-tips<CR>", { desc = "Neovim tips help", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ntr", ":NeovimTipsRandom<CR>", { desc = "Show random tip", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ntp", ":NeovimTipsPdf<CR>", { desc = "Open Neovim tips PDF", noremap = true, silent = true })
 return M
