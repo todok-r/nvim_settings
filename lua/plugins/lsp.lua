@@ -4,50 +4,6 @@ return {
     opts = {},
   },
   {
-    "nvimtools/none-ls.nvim",
-    dependencies = {
-      "nvimtools/none-ls-extras.nvim",
-    },
-    config = function()
-      local status, null_ls = pcall(require, "null-ls")
-      if not status then
-        print("none-ls not found")
-        return
-      end
-      null_ls.setup({
-        sources = {
-          --typescript
-          require("none-ls.diagnostics.eslint"),
-          null_ls.builtins.formatting.prettier,
-          --lua
-          null_ls.builtins.formatting.stylua,
-          --shell
-          null_ls.builtins.formatting.shfmt,
-        },
-      })
-    end,
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "nvimtools/none-ls.nvim",
-    },
-    config = function()
-      require("mason-null-ls").setup({
-        --ensure_installed = nil,
-        ensure_installed = {
-          "jsonlint",
-          "prettier",
-          "shfmt",
-          "stylua",
-        },
-        automatic_installation = true, -- You can still set this to `true`
-      })
-    end,
-  },
-  {
     "onsails/lspkind.nvim",
     config = function()
       require("lspkind").init({
@@ -104,12 +60,11 @@ return {
   {
     "nvimdev/lspsaga.nvim",
     config = function()
-      require("lspsaga").setup({
-      })
+      require("lspsaga").setup({})
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons",  -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
     },
   },
   -- { "kosayoda/nvim-lightbulb" },

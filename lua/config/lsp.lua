@@ -40,13 +40,6 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("my.lsp", {}),
-  callback = function(args)
-    require("config.keymaps").lsp_keymaps(args.buf)
-  end,
-})
-
 vim.lsp.enable("basedpyright")
 vim.lsp.enable("bashls")
 vim.lsp.enable("clangd")
@@ -54,5 +47,5 @@ vim.lsp.enable("cssls")
 vim.lsp.enable("html")
 vim.lsp.enable("jsonls")
 vim.lsp.enable("lua_ls")
-vim.lsp.enable("ruff")
 vim.lsp.enable("tailwindcss")
+vim.lsp.enable("awkls")

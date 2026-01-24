@@ -471,8 +471,9 @@ end
 vim.api.nvim_set_keymap("n", "<leader>ibl", "<cmd>IBLToggle<CR>", {})
 
 --lsp
-function M.lsp_keymaps(bufnr)
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+function M.lsp_keymaps()
+  --  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  local bufopts = { noremap = true, silent = true }
 
   vim.keymap.set(
     "n",
@@ -486,7 +487,6 @@ function M.lsp_keymaps(bufnr)
     vim.lsp.buf.type_definition,
     vim.tbl_extend("force", bufopts, { desc = "LSP: Type Definition" })
   )
-  vim.keymap.set("n", "<leader>gq", vim.lsp.buf.format, vim.tbl_extend("force", bufopts, { desc = "LSP: Format" }))
   vim.keymap.set(
     "n",
     "<leader>gr",
@@ -536,12 +536,20 @@ function M.lsp_keymaps(bufnr)
   -- vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, bufopts)
   -- vim.keymap.set("n", "]g", vim.diagnostic.goto_next, bufopts)
 
-  vim.keymap.set(
-    "v",
-    "<leader>gq",
-    vim.lsp.buf.format,
-    vim.tbl_extend("force", bufopts, { desc = "LSP: Format (Visual)" })
-  )
+  --  vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
+  -- vim.keymap.set("n", "<leader>gq", vim.lsp.buf.format, vim.tbl_extend("force", bufopts, { desc = "LSP: Format" }))
+  -- vim.keymap.set(
+  --   "v",
+  --   "<leader>gq",
+  --   vim.lsp.buf.format,
+  --   vim.tbl_extend("force", bufopts, { desc = "LSP: Format (Visual)" })
+  -- )
+  vim.keymap.set("n", "<leader>gq", function()
+    require("conform").format()
+  end, vim.tbl_extend("force", bufopts, { desc = "run Formatter" }))
+  vim.keymap.set("v", "<leader>gq", function()
+    require("conform").format()
+  end, vim.tbl_extend("force", bufopts, { desc = "LSP: Format (Visual)" }))
 
   -- vim.keymap.set("n", "K", "<cmd>Lspsaga hover<CR>", bufopts)
   vim.keymap.set(
@@ -578,6 +586,8 @@ function M.lsp_keymaps(bufnr)
     require("hover").hover_select()
   end, { desc = "hover.nvim (select)" })
 end
+
+M.lsp_keymaps()
 
 --minty
 vim.keymap.set("n", "<leader>mh", "<cmd>lua require('minty.huefy').open()<CR>", { desc = "open minty huefy" })
@@ -798,9 +808,29 @@ vim.keymap.set("n", "<leader>dvf", "<cmd>DiffviewFocusFiles<cr>", { desc = "Diff
 
 --neovim-tips
 vim.keymap.set("n", "<leader>nto", ":NeovimTips<CR>", { desc = "Neovim tips", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>nte", ":NeovimTipsEdit<CR>", { desc = "Edit your Neovim tips", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>nta", ":NeovimTipsAdd<CR>", { desc = "Add your Neovim tip", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>nth", ":help neovim-tips<CR>", { desc = "Neovim tips help", noremap = true, silent = true })
+vim.keymap.set(
+  "n",
+  "<leader>nte",
+  ":NeovimTipsEdit<CR>",
+  { desc = "Edit your Neovim tips", noremap = true, silent = true }
+)
+vim.keymap.set(
+  "n",
+  "<leader>nta",
+  ":NeovimTipsAdd<CR>",
+  { desc = "Add your Neovim tip", noremap = true, silent = true }
+)
+vim.keymap.set(
+  "n",
+  "<leader>nth",
+  ":help neovim-tips<CR>",
+  { desc = "Neovim tips help", noremap = true, silent = true }
+)
 vim.keymap.set("n", "<leader>ntr", ":NeovimTipsRandom<CR>", { desc = "Show random tip", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ntp", ":NeovimTipsPdf<CR>", { desc = "Open Neovim tips PDF", noremap = true, silent = true })
+vim.keymap.set(
+  "n",
+  "<leader>ntp",
+  ":NeovimTipsPdf<CR>",
+  { desc = "Open Neovim tips PDF", noremap = true, silent = true }
+)
 return M

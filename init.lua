@@ -38,5 +38,7 @@ vim.opt.incsearch = true
 vim.opt.signcolumn = "yes:1"
 vim.opt.scroll = 10
 vim.opt.scrolloff = 999
+vim.opt.relativenumber = true
+vim.opt.inccommand = "split"
 
 vim.cmd("colorscheme rose-pine-moon")
