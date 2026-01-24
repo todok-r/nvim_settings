@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   end,
 })
 
+vim.lsp.enable("awkls")
 vim.lsp.enable("basedpyright")
 vim.lsp.enable("bashls")
 vim.lsp.enable("clangd")
@@ -47,5 +48,5 @@ vim.lsp.enable("cssls")
 vim.lsp.enable("html")
 vim.lsp.enable("jsonls")
 vim.lsp.enable("lua_ls")
+vim.lsp.enable("ruff")
 vim.lsp.enable("tailwindcss")
-vim.lsp.enable("awkls")
