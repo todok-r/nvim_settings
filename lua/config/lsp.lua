@@ -3,6 +3,11 @@ vim.lsp.config("*", {
     textDocument = {
       semanticTokens = nil,
     },
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = true,
+      },
+    },
   },
   root_markers = { ".git" },
 })
