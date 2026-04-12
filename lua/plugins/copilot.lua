@@ -1,3 +1,5 @@
+return {}
+--[[
 return {
   --{ "github/copilot.vim" },
   {
@@ -27,9 +29,11 @@ return {
     config = function()
       require("CopilotChat").setup({
         debug = true,
-        model = "gpt-4o",
+        --model = "gpt-4o",
+        model = "gpt-5",
       })
     end,
     keys = require("config.keymaps").setup_CopilotChat_keymaps(),
   },
 }
+--]]
