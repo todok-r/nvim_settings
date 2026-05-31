@@ -45,8 +45,21 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   end,
 })
 
+-- LSP attach時にワークスペース診断を自動トリガー
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.name == "ty" then
+      -- 少し待ってからワークスペース診断をリクエスト
+      vim.defer_fn(function()
+        vim.lsp.buf.workspace_diagnostics()
+      end, 1000)
+    end
+  end,
+})
+
 vim.lsp.enable("awkls")
-vim.lsp.enable("basedpyright")
+--vim.lsp.enable("basedpyright")
 vim.lsp.enable("bashls")
 vim.lsp.enable("clangd")
 vim.lsp.enable("cssls")
@@ -55,3 +68,4 @@ vim.lsp.enable("jsonls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("ruff")
 vim.lsp.enable("tailwindcss")
+vim.lsp.enable("ty")

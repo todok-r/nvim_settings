@@ -63,11 +63,9 @@ return {
       require("lspsaga").setup({})
     end,
     dependencies = {
-      "nvim-treesitter/nvim-treesitter", -- optional
       "nvim-tree/nvim-web-devicons", -- optional
     },
   },
-  -- { "kosayoda/nvim-lightbulb" },
   {
     "antosha417/nvim-lsp-file-operations",
     dependencies = {
@@ -87,11 +85,6 @@ return {
   {
     "ray-x/lsp_signature.nvim",
     event = "InsertEnter",
-    opts = {},
-  },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
   },
 }
